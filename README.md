@@ -15,7 +15,7 @@ This program is a RESTful API based weather checking application.
 * The program will run in a loop until you type "exit" at the prompt.
 
 * You can optionally compile your own executable jar by running 
-"jar cfm myWeather.jar META-INF/MANIFEST.MF Hello/*.class"
+"jar cfvm myWeather.jar META-INF/MANIFEST.MF Hello/*.class"
 
 * You can then run the .jar by running "java -jar myWeather.jar"
 
