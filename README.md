@@ -9,9 +9,9 @@ This program is a RESTful API based weather checking application.
  
 ## How-to use this code
 * Ensure you have a Java compiler, preferably Java 9.0.4, installed.
-* Navigate to the source code directory.
-* Compile the code with "javac \*.java"
-* Run the program with "Java Hello.Main".
+* Navigate to the source code directory which contains the package Hello
+* Compile the code with "javac Hello/*.java
+* Run the program with "java Hello.Main".
 * The program will run in a loop until you type "exit" at the prompt.
 
 ## Known bugs
