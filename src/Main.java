@@ -83,12 +83,12 @@ public class Main {
                 break;
             }
         }
-        for (int i = 0; i < getURL.size(); i++) {
-            String checker = getURL.get(i);
+        for (String checker : getURL) {
             if (checker.contains("uri")) {
                 try {
                     warningURL = new URL(checker.split("\"")[3].replace("\"", ""));
-                } catch (MalformedURLException e) { }
+                } catch (MalformedURLException e) {
+                }
             }
         }
         double preIntense = -1.0;
@@ -98,8 +98,7 @@ public class Main {
         double visibility = -1.0;
 
 
-        for (int i = 0; i < curWeather.size(); i++) {
-            String curWeatherChecker = curWeather.get(i);
+        for (String curWeatherChecker : curWeather) {
             if (curWeatherChecker.contains("precipIntensity")) {
                 preIntense = Double.parseDouble(curWeatherChecker.split(":")[1]);
             } else if (curWeatherChecker.contains("precipProbability")) {
@@ -130,8 +129,7 @@ public class Main {
         output.append(divider + '\n');
 
         String rightnow = "";
-        for (int i = 0; i < minutelyWeather.size(); i++) {
-            String minWeatherChecker = minutelyWeather.get(i);
+        for (String minWeatherChecker : minutelyWeather) {
             if (minWeatherChecker.contains("summary")) {
                 rightnow = minWeatherChecker.split(":")[1].replace("\"", "");
             }
@@ -140,8 +138,7 @@ public class Main {
             output.append("Right now the weather is: " + rightnow + '\n');
         }
         String inFuture = "";
-        for (int i = 0; i < hourlyWeather.size(); i++) {
-            String hourWeatherChecker = hourlyWeather.get(i);
+        for (String hourWeatherChecker : hourlyWeather) {
             if (hourWeatherChecker.contains("summary")) {
                 inFuture = hourWeatherChecker.split(":")[1].replace("\"", "");
             }

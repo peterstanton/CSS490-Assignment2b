@@ -16,7 +16,7 @@ This program is a RESTful API based weather checking application.
 
 ## Known bugs
 * JSON responses can very by location leading to all sorts of different responses that need handling, 
-some areas do not report weather data. This program cannot be responsible for ommitted data in such cases.
+some areas do not report weather data. This program cannot be responsible for omitted data in such cases.
  
 ## Dependencies
 * Java 9
