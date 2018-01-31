@@ -194,7 +194,7 @@ public class Main {
                 if (alertChecker.contains("title")) {
                     aTitle = alerts.get(i + 1).split(",")[0].replace("\"", "");
                     regions = alerts.get(i + 2).replace("severity", "");
-                    advisoryType = alerts.get(i + 3).replace("\"", "");
+                    advisoryType = alerts.get(i + 3).split(",")[0].replace("\"", "");
                 } else if (alertChecker.contains("description")) {
                     aDescription = alerts.get(i + 1);
                 }
