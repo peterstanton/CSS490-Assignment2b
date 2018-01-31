@@ -57,6 +57,41 @@ public class Main {
         }
     }
 
+    private static URL processGeoURL(String[] parsed) {
+        String joined = String.join("+", parsed);
+        joined += "&key=" + googleKey;
+        try {
+            return new URL(baseGeocode + joined);
+        } catch (MalformedURLException e) { }
+        return null;
+    }
+
+    private static String processResponse(URL inURL) { //credit to https://stackoverflow.com/a/7467629/4864069
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inURL.openStream()));
+            String outResult;
+            StringBuilder builder = new StringBuilder();
+            int read;
+            char[] chars = new char[1024];
+            try {
+                while ((read = reader.read(chars)) != -1)
+                    builder.append(chars, 0, read);
+
+                outResult = builder.toString();
+                return outResult;
+            } catch (IOException e) { }
+        } catch (IOException e) { }
+        return null;
+    }
+
+    private static URL processWeatherURL(double geoLat, double geoLong) {
+        String joined = baseWeather + weatherKey + '/' + geoLat + ',' + geoLong;
+        try {
+            return new URL(joined);
+        } catch (MalformedURLException e) { }
+        return null;
+    }
+
     private static void printResults(String weatherResult, String locale) {
         //stuff here.
         String[] results = weatherResult.split("\\{");
@@ -96,7 +131,7 @@ public class Main {
         double preIntense = -1.0;
         double preChance = -1.0;
         double temp = -10000.00;
-        double windspeed = -1.0;
+        double windSpeed = -1.0;
         double visibility = -1.0;
 
 
@@ -108,7 +143,7 @@ public class Main {
             } else if (curWeatherChecker.contains("temperature")) {
                 temp = Double.parseDouble(curWeatherChecker.split(":")[1]);
             } else if (curWeatherChecker.contains("windSpeed")) {
-                windspeed = Double.parseDouble(curWeatherChecker.split(":")[1]);
+                windSpeed = Double.parseDouble(curWeatherChecker.split(":")[1]);
             } else if (curWeatherChecker.contains("visibility")) {
                 visibility = Double.parseDouble(curWeatherChecker.split(":")[1]);
             }
@@ -122,22 +157,22 @@ public class Main {
         if(temp >= -10000) {
             output.append("Current local temperature is " + temp + " degrees Fahrenheit" + '\n');
         }
-        if(windspeed >= 0.0) {
-            output.append("Current windspeed is " + windspeed + " meters per second" + '\n');
+        if(windSpeed >= 0.0) {
+            output.append("Current windSpeed is " + windSpeed + " meters per second" + '\n');
         }
         if(visibility >= 0.0) {
             output.append("Current visibility is " + visibility + " kilometers" + '\n');
         }
         output.append(divider + '\n');
 
-        String rightnow = "";
+        String rightNow = "";
         for (String minWeatherChecker : minutelyWeather) {
             if (minWeatherChecker.contains("summary")) {
-                rightnow = minWeatherChecker.split(":")[1].replace("\"", "");
+                rightNow = minWeatherChecker.split(":")[1].replace("\"", "");
             }
         }
-        if (!rightnow.isEmpty()) {
-            output.append("Right now the weather is: " + rightnow + '\n');
+        if (!rightNow.isEmpty()) {
+            output.append("Right now the weather is: " + rightNow + '\n');
         }
         String inFuture = "";
         for (String hourWeatherChecker : hourlyWeather) {
@@ -176,40 +211,5 @@ public class Main {
         }
         output.append(divider + '\n');
         System.out.println(output.toString());
-    }
-
-    private static URL processGeoURL(String[] parsed) {
-        String joined = String.join("+", parsed);
-        joined += "&key=" + googleKey;
-        try {
-            return new URL(baseGeocode + joined);
-        } catch (MalformedURLException e) { }
-        return null;
-    }
-
-    private static String processResponse(URL inURL) { //credit to https://stackoverflow.com/a/7467629/4864069
-        try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inURL.openStream()));
-            String outResult;
-            StringBuilder builder = new StringBuilder();
-            int read;
-            char[] chars = new char[1024];
-            try {
-                while ((read = reader.read(chars)) != -1)
-                    builder.append(chars, 0, read);
-
-                outResult = builder.toString();
-                return outResult;
-            } catch (IOException e) { }
-        } catch (IOException e) { }
-        return null;
-    }
-
-    private static URL processWeatherURL(double geoLat, double geoLong) {
-        String joined = baseWeather + weatherKey + '/' + geoLat + ',' + geoLong;
-        try {
-            return new URL(joined);
-        } catch (MalformedURLException e) { }
-        return null;
     }
 }

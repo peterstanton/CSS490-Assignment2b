@@ -25,6 +25,10 @@ some areas do not report weather data. This program cannot be responsible for om
 
 * For some reason, I am having difficulty running my .jar executable by double clicking on it. At present I can
 only run the executable from the command line.
+
+* I am limited in my API calls. Dark Sky is limited to 1000 API calls daily. Google is limited to 2500 calls
+daily. If those limits are reached, no further usage is possible as I have not given Dark Sky my billing 
+information and I am enforcing free usage quotas on my Google API usage. Please do not test excessively.
  
 ## Dependencies
 * Java 9
