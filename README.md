@@ -29,6 +29,10 @@ only run the executable from the command line.
 * I am limited in my API calls. Dark Sky is limited to 1000 API calls daily. Google is limited to 2500 calls
 daily. If those limits are reached, no further usage is possible as I have not given Dark Sky my billing 
 information and I am enforcing free usage quotas on my Google API usage. Please do not test excessively.
+
+* Alerts often are ugly, but there isn't a lot I can do as these are raw dumps from a government alert service.
+
+* Alerts also appear and disappear without my control.
  
 ## Dependencies
 * Java 9
