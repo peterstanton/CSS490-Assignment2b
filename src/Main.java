@@ -22,10 +22,14 @@ public class Main {
         System.out.println("https://darksky.net/poweredby/");
         Scanner in = new Scanner(System.in);
         while(true) {
-            System.out.println("Please enter the address, zip code, or city name you want weather for below:");
+            System.out.println("Please enter the address, zip code, or city name you want weather for below, " +
+                    "and \"Exit\" to quit:");
             String input = in.nextLine();
             if(input.isEmpty()) {
                 continue;
+            }
+            if(input.equalsIgnoreCase("Exit")) {
+                System.exit(0);
             }
             String[] parsed = input.split("\\W+");
             URL googleURL = processGeoURL(parsed);
