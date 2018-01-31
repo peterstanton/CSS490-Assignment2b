@@ -187,7 +187,7 @@ public class Main {
         return null;
     }
 
-    private static String processResponse(URL inURL) {
+    private static String processResponse(URL inURL) { //credit to https://stackoverflow.com/a/7467629/4864069
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(inURL.openStream()));
             String outResult;

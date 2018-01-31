@@ -28,3 +28,6 @@ only run the executable from the command line.
  
 ## Dependencies
 * Java 9
+
+## Sources
+* I got help from https://stackoverflow.com/a/7467629/4864069 on learning how to read Google's JSON response
